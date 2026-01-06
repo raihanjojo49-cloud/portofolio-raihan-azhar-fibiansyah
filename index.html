@@ -5,9 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portofolio Raihan Azhar Fibiansyah</title>
-
     <style>
-        /* TEMA KLASIK INTERNAL */
         :root {
             --bg-color: #f4f1ea;
             --paper-color: #ffffff;
@@ -39,7 +37,6 @@
             box-shadow: 10px 10px 0px rgba(0, 0, 0, 0.05);
         }
 
-        /* HEADER */
         header {
             text-align: center;
             margin-bottom: 30px;
@@ -61,10 +58,10 @@
             text-transform: uppercase;
         }
 
-        /* NAVIGATION BUTTONS */
         nav {
             display: flex;
             justify-content: center;
+            flex-wrap: wrap;
             gap: 10px;
             margin-bottom: 40px;
             border-top: 1px solid var(--border);
@@ -80,7 +77,6 @@
             cursor: pointer;
             padding: 5px 15px;
             transition: 0.3s;
-            text-transform: italic;
         }
 
         .nav-btn:hover {
@@ -92,16 +88,13 @@
             color: white;
         }
 
-        /* CONTENT SECTIONS */
         .content-section {
             display: none;
-            /* Sembunyikan semua halaman di awal */
             animation: fadeIn 0.5s ease;
         }
 
         .content-section.active {
             display: block;
-            /* Tampilkan hanya yang aktif */
         }
 
         @keyframes fadeIn {
@@ -116,62 +109,103 @@
             }
         }
 
-        /* GRID & MEDIA STYLING */
+        /* Galeri Karya */
+        .karya-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .karya-item {
+            width: 80%;
+            text-align: center;
+            border-bottom: 1px dashed var(--border);
+            padding-bottom: 20px;
+        }
+
+        .karya-item img {
+            width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+        }
+
+        /* Media Grid */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 20px;
         }
 
         .card {
             border: 1px solid #eee;
             padding: 15px;
+            background: #fafafa;
             text-align: center;
         }
 
-        img,
-        video {
+        .card img,
+        .card video {
             width: 100%;
             height: auto;
+            border: 1px solid #ddd;
             margin-bottom: 10px;
         }
 
-        audio {
-            width: 100%;
+        .pdf-link {
+            display: inline-block;
             margin-top: 10px;
+            color: #b22222;
+            text-decoration: none;
+            font-weight: bold;
+            border: 1px solid #b22222;
+            padding: 5px 10px;
+            transition: 0.3s;
         }
 
-        .skills-list {
-            list-style: none;
+        .pdf-link:hover {
+            background: #b22222;
+            color: white;
+        }
+
+        /* Kontak Form */
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            padding: 10px;
+            font-family: 'Times New Roman', serif;
+            border: 1px solid var(--border);
+            background: #fdfdfd;
+            width: 100%;
+        }
+
+        .submit-btn {
+            background: var(--text-main);
+            color: white;
+            border: none;
+            padding: 12px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        footer {
             text-align: center;
-            font-size: 1.2rem;
+            margin-top: 50px;
+            font-size: 0.8rem;
+            color: #888;
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
         }
-
-        .skills-list li {
-            margin-bottom: 10px;
-            border-bottom: 1px dashed var(--border);
-            display: inline-block;
-            width: 80%;
-        }
-
-        .karya-list {
-            list-style: none;
-            text-align: center;
-            font-size: 1.2rem;
-        }
-
-        .karya-list li {
-            margin-bottom: 70px;
-            border-bottom: 1px dashed var(--border);
-            display: inline-block;
-            width: 80%;
-
-            footer {
-                text-align: center;
-                margin-top: 50px;
-                font-size: 0.8rem;
-                color: #888;
-            }
     </style>
 </head>
 
@@ -180,115 +214,113 @@
     <div class="container">
         <header>
             <img src="foto profil porto.jpeg" alt="Foto Profil" class="profile-img">
-            <p>
             <h1>Raihan Azhar Fibiansyah</h1>
-            </p>
             <p><i>Student of Universitas Pamulang</i></p>
         </header>
 
         <nav>
-            <button class="nav-btn active" onclick="showPage('karya')">Karya</button>
-            <button class="nav-btn" onclick="showPage('skill')">Skill</button>
-            <button class="nav-btn" onclick="showPage('media')">Media</button>
+            <button class="nav-btn active" onclick="showPage(event, 'karya')">Karya</button>
+            <button class="nav-btn" onclick="showPage(event, 'skill')">Skill</button>
+            <button class="nav-btn" onclick="showPage(event, 'media')">Media</button>
+            <button class="nav-btn" onclick="showPage(event, 'kontak')">Kontak</button>
         </nav>
 
         <div id="karya" class="content-section active">
-            <h2 class="gallery-title">Galeri Karya</h2>
-            <div class="photo-gallery">
-                <div class="photo-item">
-                    <ul class="karya-list">
-                        <li> <img src="id card panitia 17 ags.jpeg" alt="Foto 1">
-                            <div class="photo-overlay">
-                                <span> 1. Membuat ID Card Panitia 17 Agustus</span>
-                            </div>
-                </div>
+            <h2 style="text-align:center; margin-bottom:20px;">Galeri Karya</h2>
+            <ul class="karya-list">
+                <li class="karya-item">
+                    <img src="id card panitia 17 ags.jpeg" alt="ID Card">
+                    <p>1. Membuat ID Card Panitia 17 Agustus</p>
                 </li>
+                <li class="karya-item">
+                    <img src="naskah iklan aj.png" alt="Naskah Iklan">
+                    <p>2. Membuat urutan naskah iklan jas brand AJ</p>
+                </li>
+                <li class="karya-item">
+                    <img src="website pribadi.png" alt="Website Pribadi">
+                    <p>3. Membuat website pribadi sederhana menggunakan HTML</p>
+                </li>
+                <li class="karya-item">
+                    <img src="contoh web berita.png" alt="Web Berita">
+                    <p>4. Membuat contoh penempatan untuk website berita</p>
+                </li>
+            </ul>
+        </div>
 
-                <ul class="karya-list">
-                    <div class="photo-item">
-                        <li><img src="naskah iklan aj.png" alt="Deskripsi Foto 2">
-                            <div class="photo-overlay">
-                                <span>2. Membuat urutan naskah iklan jas brand AJ (tugas)</span>
-                            </div>
-                    </div>
-                    </li>
+        <div id="skill" class="content-section">
+            <h2 style="text-align:center; margin-bottom:20px;">Keahlian Utama</h2>
+            <ul style="list-style:none; text-align:center; font-size: 1.2rem;">
+                <li style="border-bottom: 1px dashed var(--border); margin-bottom: 10px;">Produksi Video Dokumenter 80%
+                </li>
+                <li style="border-bottom: 1px dashed var(--border); margin-bottom: 10px;">Strategi Konten Kreatif 90%
+                </li>
+                <li style="border-bottom: 1px dashed var(--border); margin-bottom: 10px;">Desain Visual & Tipografi 50%
+                </li>
+                <li style="border-bottom: 1px dashed var(--border); margin-bottom: 10px;">Pengembangan Web Statis 50%
+                </li>
+            </ul>
+        </div>
 
-                    <ul class="karya-list">
-                        <li>
-                            <div class="photo-item">
-                                <img src="website pribadi.png" alt="Deskripsi Foto 3">
-                                <div class="photo-overlay">
-                                    <span>3. Membuat website pribadi sederhana menggunakan HTML</span>
-                                </div>
-                            </div>
-                        </li>
+        <div id="media" class="content-section">
+            <h2 style="text-align:center; margin-bottom:20px;">Galeri Media</h2>
+            <div class="grid">
+                <div class="card">
+                    <img src="me n conrad.jpeg" alt="Visual">
+                    <p>Foto Kenangan</p>
+                </div>
 
-                        <ul class="karya-list">
-                            <li>
-                                <div class="photo-item">
-                                    <img src="contoh web berita.png" alt="Deskripsi Foto 4">
-                                    <div class="photo-overlay">
-                                        <span>4. Membuat contoh penempatan untuk website berita</span>
-                                    </div>
-                            </li>
+                <div class="card">
+                    <div style="font-size: 3rem;">📄</div>
+                    <p><b>Dokumen Portofolio (PDF)</b></p>
+                    <a href="CV  Raihan Azhar Fibiansyah.pdf" class="pdf-link" target="_blank">Unduh / Lihat PDF</a>
+                </div>
+
+                <div class="card">
+                    <video controls>
+                        <source src="itmhcbm kcb.mp4" type="video/mp4">
+                    </video>
+                    <p>Video Dokumenter</p>
+                </div>
+
+                <div class="card">
+                    <audio controls style="width: 100%;">
+                        <source src="vestia-zeta-halo-sayang.mp3" type="audio/mpeg">
+                    </audio>
+                    <p>Audio Project</p>
+                </div>
             </div>
         </div>
-    </div>
-    </ul>
 
-    <div id="skill" class="content-section">
-        <h2>Keahlian Utama</h2>
-        <ul class="skills-list">
-            <li>Desain Visual & Tipografi 50%</li>
-            <li>Pengembangan Web Statis 50%</li>
-            <li>Produksi Video Dokumenter 80%</li>
-            <li>Penyuntingan Audio & Soundscape 50%</li>
-            <li>Strategi Konten Kreatif 90%</li>
-        </ul>
-    </div>
-
-    <div id="media" class="content-section">
-        <h2>Galeri Media</h2>
-        <div class="grid">
-            <div class="card">
-                <img src="me n conrad.jpeg" alt="Visual">
-            </div>
-            <div class="card">
-                <video controls>
-                    <source src="itmhcbm kcb.mp4" type="video/mp4">
-                </video>
-            </div>
-            <div class="card">
-                <audio controls>
-                    <source src="vestia-zeta-halo-sayang.mp3" type="audio/mpeg">
-                </audio>
+        <div id="kontak" class="content-section">
+            <h2 style="text-align:center; margin-bottom:20px;">Hubungi Saya</h2>
+            <form class="contact-form" action="mailto:email-anda@gmail.com" method="post" enctype="text/plain">
+                <input type="text" name="Nama" placeholder="Nama Lengkap" required>
+                <input type="email" name="Email" placeholder="Alamat Email" required>
+                <textarea name="Pesan" rows="5" placeholder="Pesan Anda..." required></textarea>
+                <button type="submit" class="submit-btn">Kirim via Email</button>
+            </form>
+            <div style="text-align: center; margin-top: 30px;">
+                <p>Atau hubungi via WhatsApp:</p>
+                <a href="https://wa.me/qr/CH2XMLPR7VLGN1" target="_blank"
+                    style="color: #25D366; text-decoration: none; font-weight: bold; font-size: 1.2rem;">+62
+                    882-1320-5171</a>
             </div>
         </div>
-    </div>
 
-    <footer>
-        <p>&copy; 2026 - Portfolio Raihan Azhar Fibiansyah.</p>
-    </footer>
+        <footer>
+            <p>&copy; 2025 - Portfolio Raihan Azhar Fibiansyah</p>
+        </footer>
     </div>
 
     <script>
-        function showPage(pageId) {
-            // 1. Sembunyikan semua section
+        function showPage(event, pageId) {
             const sections = document.querySelectorAll('.content-section');
-            sections.forEach(section => {
-                section.classList.remove('active');
-            });
+            sections.forEach(section => section.classList.remove('active'));
 
-            // 2. Hapus status active dari semua tombol
             const buttons = document.querySelectorAll('.nav-btn');
-            buttons.forEach(btn => {
-                btn.classList.remove('active');
-            });
+            buttons.forEach(btn => btn.classList.remove('active'));
 
-            // 3. Tampilkan section yang dipilih
             document.getElementById(pageId).classList.add('active');
-
-            // 4. Set tombol yang diklik menjadi active
             event.currentTarget.classList.add('active');
         }
     </script>
@@ -296,6 +328,3 @@
 </body>
 
 </html>
-
-
-
